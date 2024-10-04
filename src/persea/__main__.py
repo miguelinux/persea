@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024-present Miguel Bernal Marin <miguel.bernal.marin@linux.intel.com>
+# SPDX-FileCopyrightText: 2024-present Intel Corporation
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: GPL-3.0-or-later
 import sys
 
 if __name__ == "__main__":
