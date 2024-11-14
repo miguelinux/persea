@@ -17,7 +17,18 @@ from persea.__about__ import __version__
     invoke_without_command=True,
 )
 @click.version_option(version=__version__, prog_name="persea")
-def persea():
-    """Main and entry function with no arguments"""
+@click.pass_context
+def persea(ctx):
+    """Execute test on a local or remote platform"""
 
-    click.echo("Hola Mundo!")
+    if ctx.invoked_subcommand is None:
+        click.echo("Hola Mundo!")
+    else:
+        click.echo(f"Sigue: {ctx.invoked_subcommand}")
+
+
+@persea.command()
+def run():
+    """Execute a test"""
+
+    click.echo("Run test")
