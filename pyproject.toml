@@ -26,12 +26,13 @@ classifiers = [
 ]
 dependencies = [
   "click",
+  "paramiko",
 ]
 
 [project.urls]
-Documentation = "https://github.com/Miguel Bernal Marin/persea#readme"
-Issues = "https://github.com/Miguel Bernal Marin/persea/issues"
-Source = "https://github.com/Miguel Bernal Marin/persea"
+Documentation = "https://github.com/miguelinux/persea#readme"
+Issues = "https://github.com/miguelinux/persea/issues"
+Source = "https://github.com/miguelinux/persea"
 
 [project.scripts]
 persea = "persea.cli:persea"
