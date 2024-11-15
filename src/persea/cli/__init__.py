@@ -10,6 +10,7 @@
 import click
 
 from persea.__about__ import __version__
+from persea.connection import ssh_connect_with_config
 
 
 @click.group(
@@ -22,7 +23,8 @@ def persea(ctx):
     """Execute test on a local or remote platform"""
 
     if ctx.invoked_subcommand is None:
-        click.echo("Hola Mundo!")
+        ret = ssh_connect_with_config("noble", "~/.ssh/config-container")
+        click.echo("ssh = " + str(ret))
     else:
         click.echo(f"Sigue: {ctx.invoked_subcommand}")
 
