@@ -28,6 +28,7 @@ dependencies = [
   "click",
   "paramiko",
   "avocado-framework",
+  "avocado-framework-plugin-result-html",
 ]
 
 [project.urls]
