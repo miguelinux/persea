@@ -11,6 +11,7 @@ import click
 
 from persea.__about__ import __version__
 from persea.connection import ssh_connect_with_config
+from persea.palta import run_test
 
 
 @click.group(
@@ -27,6 +28,7 @@ def persea(ctx):
         click.echo("ssh = " + str(ret))
     else:
         click.echo(f"Sigue: {ctx.invoked_subcommand}")
+        run_test()
 
 
 @persea.command()

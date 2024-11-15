@@ -75,11 +75,11 @@ def ssh_connect_with_config(hostname: str, ssh_config_file: str) -> int:
             str_command = "sudo apt-get -y install git pipx"
             str_command = "sudo apt-get -y install git python3-pip python3-venv"
             print(str_command)
-            stdin, stdout, stderr = client.exec_command(str_command)  # nosec B601
+            # stdin, stdout, stderr = client.exec_command(str_command)  # nosec B601
 
-            print("stdout: ", stdout.read().decode("utf-8"))
-            print("stderr: ", stderr.read().decode("utf-8"))
-            stdin, stdout, stderr = client.exec_command(str_command)  # nosec B601
+            # print("stdout: ", stdout.read().decode("utf-8"))
+            # print("stderr: ", stderr.read().decode("utf-8"))
+            # stdin, stdout, stderr = client.exec_command(str_command)  # nosec B601
 
     except Exception as e:
         print(f"Error al conectar: {e}")
