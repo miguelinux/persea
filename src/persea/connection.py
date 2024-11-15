@@ -63,7 +63,7 @@ def ssh_connect_with_config(hostname: str, ssh_config_file: str) -> int:
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # nosec B507
 
     try:
-        client.connect(**connect_args)
+        client.connect(**connect_args)  # type: ignore
         print(f"Conexión SSH establecida a {hostname}")
 
         # Ejecutar un comando (ejemplo)
@@ -73,6 +73,7 @@ def ssh_connect_with_config(hostname: str, ssh_config_file: str) -> int:
 
         if "command not found" in str_stderr:
             str_command = "sudo apt-get -y install git pipx"
+            str_command = "sudo apt-get -y install git python3-pip"
             print(str_command)
             stdin, stdout, stderr = client.exec_command(str_command)  # nosec B601
 
