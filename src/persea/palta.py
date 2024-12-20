@@ -81,6 +81,9 @@ def run_test() -> None:
         except CmdNotFoundError:
             return
 
+    # with open("/home/ubuntu/test", mode="w", encoding="utf-8") as wp_script:
+    # wp_script.write(get_wrapper_script())
+
     runnable_list = []
 
     test_name = "Processor/Cpuinfo_check"
@@ -91,6 +94,13 @@ def run_test() -> None:
     )
 
     test_name = "Processor/check_5level_page"
+    runnable_list.append(
+        Runnable(
+            "exec-test", fp_ws, "/home/ubuntu/TestCase", test_name, identifier=test_name
+        )
+    )
+
+    test_name = "Network/Network_check"
     runnable_list.append(
         Runnable(
             "exec-test", fp_ws, "/home/ubuntu/TestCase", test_name, identifier=test_name
