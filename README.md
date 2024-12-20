@@ -20,6 +20,14 @@ This is a proof of concept (POC) of avocado framework
 pip install persea
 ```
 
+### Installation ubuntu
+
+```console
+sudo apt-get -y install pipx
+git clone https://github.com/miguelinux/persea.git
+pipx install persea
+```
+
 ## License
 
 `persea` is distributed under the terms of the
