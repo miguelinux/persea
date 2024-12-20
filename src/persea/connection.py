@@ -67,8 +67,9 @@ def ssh_connect_with_config(hostname: str, ssh_config_file: str) -> int:
         print(f"Conexión SSH establecida a {hostname}")
 
         # Ejecutar un comando (ejemplo)
-        stdin, stdout, stderr = client.exec_command("persea ls")  # nosec B601
-        # print(stderr.read().decode('utf-8'))
+        stdin, stdout, stderr = client.exec_command("persea run")  # nosec B601
+        # print("stdout: ", stdout.read().decode("utf-8"))
+        print("stderr: ", stderr.read().decode("utf-8"))
         str_stderr = stderr.read().decode("utf-8")
 
         if "command not found" in str_stderr:

@@ -24,6 +24,7 @@ def persea(ctx):
     """Execute test on a local or remote platform"""
 
     if ctx.invoked_subcommand is None:
+        click.echo(f"Subcommand: {ctx.invoked_subcommand}")
         ret = ssh_connect_with_config("noble", "~/.ssh/config-container")
         click.echo("ssh = " + str(ret))
     else:
