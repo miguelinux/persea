@@ -4,10 +4,10 @@
 # (optional: default false) set to true to have pre-commit stop running hooks
 # after the first failure.
 fail_fast: false
-exclude: ejemplos_python
+# exclude: ejemplos_python
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-merge-conflict
       - id: debug-statements
@@ -19,7 +19,6 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
       - id: detect-private-key
-      - id: end-of-file-fixer
   - repo: https://github.com/miguelinux/reorder-python-imports
     # fork from: https://github.com/asottile/reorder_python_imports
     # rev: vX.Y.Z.1
@@ -29,7 +28,7 @@ repos:
         args: [--application-directories, '.:src', --py38-plus]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.6.6
+    rev: v0.8.4
     hooks:
       # Run the linter.
       - id: ruff
@@ -37,12 +36,12 @@ repos:
       # Run the formatter.
       - id: ruff-format
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.2  # Use the sha / tag you want to point at
+    rev: v1.13.0  # Use the sha / tag you want to point at
     hooks:
       - id: mypy
         additional_dependencies: [types-paramiko]
   - repo: https://github.com/psf/black
-    rev: 24.8.0
+    rev: 24.10.0
     hooks:
       - id: black
         # It is recommended to specify the latest version of Python
@@ -51,7 +50,7 @@ repos:
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.12
   - repo: https://github.com/PyCQA/bandit
-    rev: '1.7.9'
+    rev: '1.8.0'
     hooks:
       - id: bandit
         name: bandit
@@ -67,6 +66,6 @@ repos:
     hooks:
       - id: gitlint
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.19.2
+    rev: v8.21.3
     hooks:
       - id: gitleaks
