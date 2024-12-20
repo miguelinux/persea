@@ -25,11 +25,16 @@ def get_wrapper_script() -> str:
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Test Case Path
 TC_PATH=$1
+if ! test -d ${TC_PATH}
+then
+echo >&2 echo "error: ${TC_PATH} not found"
+exit 1
+fi
 # Test Case
 TC=$2
 # Needs sudo
 SD=$3
-full_path = $(realpath ${TC_PATH}/${TC})
+full_path=$(realpath ${TC_PATH}/${TC})
 pushd ${full_path}
 ${SD} bash Do_*.sh
 ret=$?
@@ -69,7 +74,7 @@ def run_test() -> None:
         # FullPath wrapper script
         fp_ws = find_command(wrapper_script)
     except CmdNotFoundError:
-        if not create_wrapper_script(wrapper_script):
+        if create_wrapper_script(wrapper_script):
             return
         try:
             fp_ws = find_command(wrapper_script)
@@ -78,13 +83,17 @@ def run_test() -> None:
 
     runnable_list = []
 
-    runnable_list.append(
-        Runnable("exec-test", fp_ws, "/home/ubuntu/TestCase", "Processor/Cpuinfo_check")
-    )
-
+    test_name = "Processor/Cpuinfo_check"
     runnable_list.append(
         Runnable(
-            "exec-test", fp_ws, "/home/ubuntu/TestCase", "Processor/check_5level_page"
+            "exec-test", fp_ws, "/home/ubuntu/TestCase", test_name, identifier=test_name
+        )
+    )
+
+    test_name = "Processor/check_5level_page"
+    runnable_list.append(
+        Runnable(
+            "exec-test", fp_ws, "/home/ubuntu/TestCase", test_name, identifier=test_name
         )
     )
 
