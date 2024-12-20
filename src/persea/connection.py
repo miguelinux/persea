@@ -67,8 +67,11 @@ def ssh_connect_with_config(hostname: str, ssh_config_file: str) -> int:
         print(f"Conexión SSH establecida a {hostname}")
 
         # Ejecutar un comando (ejemplo)
-        stdin, stdout, stderr = client.exec_command("persea run")  # nosec B601
-        # print("stdout: ", stdout.read().decode("utf-8"))
+        # stdin, stdout, stderr = client.exec_command("persea run")  # nosec B601
+        stdin, stdout, stderr = client.exec_command(
+            "bash -lc 'persea run'"
+        )  # nosec B601
+        print("stdout: ", stdout.read().decode("utf-8"))
         print("stderr: ", stderr.read().decode("utf-8"))
         str_stderr = stderr.read().decode("utf-8")
 
