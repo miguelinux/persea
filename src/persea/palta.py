@@ -66,21 +66,37 @@ def run_test() -> None:
     wrapper_script = "aguacate.bash"
 
     try:
-        fp_aguacate = find_command(wrapper_script)
+        # FullPath wrapper script
+        fp_ws = find_command(wrapper_script)
     except CmdNotFoundError:
         if not create_wrapper_script(wrapper_script):
             return
+        try:
+            fp_ws = find_command(wrapper_script)
+        except CmdNotFoundError:
+            return
 
-    return
+    runnable_list = []
 
-    t1 = Runnable("exec-test", fp_aguacate)
-    bintrue = Runnable("exec-test", "/bin/true")
-    echo = Runnable("exec-test", "/usr/bin/echo", "Hello World!")
-    id_test = Runnable(
-        "exec-test", "/usr/bin/echo", "Hello World!", identifier="echo-hello-world"
+    runnable_list.append(
+        Runnable("exec-test", fp_ws, "/home/ubuntu/TestCase", "Processor/Cpuinfo_check")
     )
 
-    suite = TestSuite(name="exec-test", tests=[bintrue, echo, id_test, t1])
+    runnable_list.append(
+        Runnable(
+            "exec-test", fp_ws, "/home/ubuntu/TestCase", "Processor/check_5level_page"
+        )
+    )
+
+    runnable_list.append(Runnable("exec-test", "/bin/true"))
+    runnable_list.append(Runnable("exec-test", "/usr/bin/echo", "Hello World!"))
+    runnable_list.append(
+        Runnable(
+            "exec-test", "/usr/bin/echo", "Hello World!", identifier="echo-hello-world"
+        )
+    )
+
+    suite = TestSuite(name="exec-test", tests=runnable_list)
 
     with Job(test_suites=[suite]) as j:
         sys.exit(j.run())
