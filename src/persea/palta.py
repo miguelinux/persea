@@ -27,7 +27,7 @@ def get_wrapper_script() -> str:
 TC_PATH=$1
 if ! test -d ${TC_PATH}
 then
-echo >&2 echo "error: ${TC_PATH} not found"
+>&2 echo "error: ${TC_PATH} not found"
 exit 1
 fi
 # Test Case
