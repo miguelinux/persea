@@ -25,12 +25,16 @@ from persea.palta import run_test
     default="~/.config/persea/test-suite.txt",
     help="Test Suite file",
 )
+@click.option(
+    "-c", "--config", default="~/.config/persea/config.txt", help="Persea config file"
+)
 @click.pass_context
-def persea(ctx, host, ssh_config, test_suite_file):
+def persea(ctx, host, ssh_config, test_suite_file, config):
     """Execute test on a local or remote platform"""
 
     click.echo("ssh = " + ssh_config)
     click.echo("tsf = " + test_suite_file)
+    click.echo("cfg = " + config)
     if host is not None:
         click.echo("host = " + host)
 
