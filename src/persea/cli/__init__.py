@@ -47,7 +47,8 @@ def persea(ctx, host, ssh_config, test_suite_file):
 
 
 @persea.command()
-def run():
+@click.pass_context
+def run(ctx):
     """Execute a test"""
 
     click.echo("Run test")
